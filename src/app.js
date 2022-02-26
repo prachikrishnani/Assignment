@@ -28,3 +28,13 @@ app.listen(port, () => {
     console.log(`connection setup ${port}`);
 
 })
+app.patch("/name", (req,res) => {
+    try{
+        const name = Movie.findBy(req.params)
+        movie.sub = req.body.sub
+        const o = movie.save()
+        res.json(o)
+    }catch(e) {
+        res.send(e);
+    }
+})
