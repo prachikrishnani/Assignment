@@ -7,8 +7,12 @@ const app = express();
 const port = process.env.PORT || 8000 ;
 
 app.get("/", (req,res) => {
-    res.send("hello get");
-
+    try{
+        const movie = movie.find()
+        res.json(movie)
+    }catch(e){
+        res.send(e);
+    }
 })
 app.use(express.json());
 
@@ -22,7 +26,7 @@ app.post("/movie", (req, res) => {
         res.status(400).send(e);
 
     })
-    res.send("hello post");
+    
 })
 app.listen(port, () => {
     console.log(`connection setup ${port}`);
